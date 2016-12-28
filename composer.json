@@ -1,0 +1,29 @@
+{
+  "name": "eonasdan/bootstrap-datetimepicker",
+  "type": "component",
+  "version": "5.0.0-alpha",
+  "description": "Date/time picker widget based on twitter bootstrap",
+  "keywords": [
+    "bootstrap",
+    "datetimepicker"
+  ],
+  "homepage": "https://github.com/tempusdominus/bootstrap-3-datetimepicker",
+  "license": "MIT",
+  "require": {
+    "robloach/component-installer": "*",
+    "components/jquery": ">=1.9.1",
+    "moment": ">=2.10.5",
+    "tempusdominus-core": "5.0.0-alpha"
+  },
+  "extra": {
+    "component": {
+      "scripts": [
+        "src/js/bootstrap-3-datetimepicker.js"
+      ],
+      "files": [
+        "build/js/bootstrap-3-datetimepicker.min.js",
+        "build/css/bootstrap-3-datetimepicker.min.css"
+      ]
+    }
+  }
+}
