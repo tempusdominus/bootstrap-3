@@ -2,15 +2,17 @@
 
 <div class="alert alert-info">
     <strong>Note</strong>
-    All options are accessed via the <code>data</code> attribute e.g. <code>$('#datetimepicker').data("DateTimePicker").OPTION()</code>
+    All options are accessed via the <code>data</code> attribute e.g. <code>$('#datetimepicker').datetimepicker(OPTION, ARGUMENT)</code>
+    
+    **TODO** should I move some of this to the component?
 </div>
 
-### options()
+### options
 
 Returns the components current options object. Note that the changing the values of the returned object does not change the components actual configuration. Use `options(options)` to set the components options massively or the other methods for setting config options individually.
 
 
-### options([options])
+### options, [options]
 
 Takes an object variable with option key:value properties and configures the component. Use this to update multiple options on the component.
 
@@ -20,9 +22,9 @@ Takes an object variable with option key:value properties and configures the com
 
  Returns the component's model current date, a `moment` object or `null` if not set.
 
-####date([newDate])
+#### date, [newDate]
 
- Takes `string, Date, moment, null` parameter and sets the components model current moment to it. Passing a `null` value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the `options.format` and `options.useStrict` components configuration.
+ Takes `string, Date, moment, null` parameter and sets the components model current moment to it. Passing a `null` value unsets the components model current moment. Parsing of the `newDate` parameter is made using moment library with the `options.format` and `options.useStrict` components configuration.
 
 ##### Throws
 
@@ -30,7 +32,7 @@ Takes an object variable with option key:value properties and configures the com
 
 ##### Emits
 
-* `dp.change` - In case `newDate` is different from current moment
+* `change.datetimepicker` - In case `newDate` is different from current moment
 
 ----------------------
 
@@ -40,16 +42,16 @@ Takes an object variable with option key:value properties and configures the com
 
 See [momentjs' docs](http://momentjs.com/docs/#/displaying/format/) for valid formats. Format also dictates what components are shown, e.g. `MM/dd/YYYY` will not display the time picker.
 
-#### format()
+#### format
 
 Returns the component's `options.format` `string`
 
-#### format(format)
+#### format, [format]
 
 Takes a [moment.js](http://momentjs.com/docs/#/displaying/format/) format `string` and sets the components  `options.format`. This is used for displaying and also for parsing input strings either from the input element the component is attached to or the `date()` function.
 The parameter can also be a `boolean:false` in which case the format is set to the locale's `L LT`.
 
-**Note:** this is also used to determine if the TimePicker sub component will display the hours in 12 or 24 format. (if 'a' or 'h' exists in the passed `string` then a 12 hour mode is set)
+**Note:** this is also used to determine if the time picker sub component will display the hours in 12 or 24 format. (if `a` or `h` exists in the passed `string` then a 12 hour mode is set)
 
 ----------------------
 
@@ -57,15 +59,15 @@ The parameter can also be a `boolean:false` in which case the format is set to t
 
 	Default: 'MMMM YYYY'
 
-Changes the heading of the datepicker when in "days" view.
+Changes the heading of the date picker when in "days" view.
 
 ![Datepicker Header](img/dpheader.png)
 
-#### dayViewHeaderFormat()
+#### dayViewHeaderFormat
 
 Returns a `string` variable with the currently set `options.dayViewHeaderFormat` option.
 
-#### dayViewHeaderFormat(string)
+#### dayViewHeaderFormat, [string]
 
 Takes a `string` value.
 
@@ -79,11 +81,11 @@ Used to customize the header of the day view.
 
 Allows for several input formats to be valid. See [this PR](https://github.com/Eonasdan/bootstrap-datetimepicker/pull/666).
 
-#### extraFormats()
+#### extraFormats
 
 Returns a `boolean` or array with the `options.extraFormats` option configuration
 
-#### extraFormats(formats)
+#### extraFormats, [formats]
 
 Takes an array of valid input moment format options.
 
@@ -96,12 +98,12 @@ Takes an array of valid input moment format options.
 
 Number of minutes the up/down arrow's will move the minutes value in the time picker
 
-#### stepping()
+#### stepping
 
 Returns a `number` with the `options.stepping` option configuration
 
 
-#### stepping(number)
+#### stepping, [number]
 
 Takes a `number`. This be the amount the up/down arrows move the minute value with a time picker.
 
@@ -115,52 +117,52 @@ Takes a `number`. This be the amount the up/down arrows move the minute value wi
 
 Prevents date/time selections before this date. Will override `defaultDate` and `useCurrent` if either of these settings are the same day since both options are invalid according to the rules you've selected.
 
-#### minDate()
+#### minDate
 
 Returns the currently set moment of the `options.minDate` or `false` if not set
 
-#### minDate(minDate)
+#### minDate, [minDate]
 
-Takes a minDate `string, Date, moment, boolean:false` parameter and disallows the user to select a moment that is before that moment. If a `boolean:false` value is passed the `options.minDate` parameter is cleared and there is no restriction to the miminum moment the user can select. 
+Takes a `minDate` `string, Date, moment, boolean:false` parameter and disallows the user to select a moment that is before that moment. If a `boolean:false` value is passed the `options.minDate` parameter is cleared and there is no restriction to the minimum moment the user can select. 
 
-**Note:** If the minDate parameter is after the currently selected moment the currently selected moment changes to minDate parameter
+**Note:** If the `minDate` parameter is after the currently selected moment the currently selected moment changes to minDate parameter
 
 ##### Throws
 
-* `TypeError` - if minDate parameter cannot be parsed using the `options.format` and `options.useStrict` configuration settings
+* `TypeError` - if `minDate` parameter cannot be parsed using the `options.format` and `options.useStrict` configuration settings
 
-* `TypeError` - if minDate parameter is after `options.maxDate`
+* `TypeError` - if `minDate` parameter is after `options.maxDate`
 
 ##### Emits
 
-* `dp.change` - if the new minDate is after currently selected moment (waiting for #472 to close in order to finalize this part)
+* `change.datetimepicker` - if the new `minDate` is after currently selected moment (waiting for #472 to close in order to finalize this part)
 
-* `dp.error` - if the new minDate is after currently selected moment (waiting for #472 to close in order to finalize this part)
+* `dp.error` - if the new `minDate` is after currently selected moment (waiting for #472 to close in order to finalize this part)
 
 ----------------------
 
-#### maxDate()
+#### maxDate
 
 Returns the currently set moment of the `options.maxDate` or `false` if not set
 
 
-#### maxDate(maxDate)
+#### maxDate, [maxDate]
 
-Takes a maxDate `string, Date, moment, boolean:false` parameter and disallows the user to select a moment that is after that moment. If a `boolean:false` value is passed `options.maxDate` is cleared and there is no restriction to the maximum moment the user can select.
+Takes a [maxDate] `string, Date, moment, boolean:false` parameter and disallows the user to select a moment that is after that moment. If a `boolean:false` value is passed `options.maxDate` is cleared and there is no restriction to the maximum moment the user can select.
 
-**Note:** If maxDate is before the currently selected moment the currently selected moment changes to maxDate
+**Note:** If [maxDate] is before the currently selected moment the currently selected moment changes to [maxDate]
 
 ##### Throws
 
-* `TypeError` - if maxDate parameter cannot be parsed using the `options.format` and `options.useStrict` configuration settings
+* `TypeError` - if `maxDate` parameter cannot be parsed using the `options.format` and `options.useStrict` configuration settings
 
-* `TypeError` - if maxDate parameter is before `options.minDate`
+* `TypeError` - if `maxDate` parameter is before `options.minDate`
 
 ##### Emits
 
-* `dp.change` - if the new maxDate is after currently selected moment  (waiting for #472 to close in order to finalize this part)
+* `change.datetimepicker` - if the new `maxDate` is after currently selected moment  (waiting for #472 to close in order to finalize this part)
 
-* `dp.error` - if the new maxDate is after currently selected moment  (waiting for #472 to close in order to finalize this part)
+* `dp.error` - if the new `maxDate` is after currently selected moment  (waiting for #472 to close in order to finalize this part)
 
 ----------------------
 
@@ -170,15 +172,15 @@ Takes a maxDate `string, Date, moment, boolean:false` parameter and disallows th
 
 On `show`, will set the picker to the current date/time.
 
-#### useCurrent()
+#### useCurrent
 
 Returns a `boolean` or `string` with the `options.useCurrent` option configuration
 
-#### useCurrent(boolean or string)
+#### useCurrent, boolean or string
 
 Takes a `boolean` or `string`. If a `boolean` true is passed and the components model moment is not set (either through `setDate` or through a valid value on the input element the component is attached to) then the first time the user opens the datetimepicker widget the value is initialized to the current moment of the action. If a false `boolean` is passed then no initialization happens on the input element. You can select the granularity on the initialized moment by passing one of the following strings (`'year', 'month', 'day', 'hour', 'minute'`) in the variable.
 
-If for example you pass `'day'` to the `setUseCurrent` function and the input field is empty the first time the user opens the datetimepicker widget the input text will be initialized to the current datetime with day granularity (ie if currentTime = `2014-08-10 13:32:33` the input value will be initialized to `2014-08-10 00:00:00`)
+If for example you pass `'day'` to the `setUseCurrent` function and the input field is empty the first time the user opens the datetimepicker widget the input text will be initialized to the current date time with day granularity (e.g. if current time = `2014-08-10 13:32:33` the input value will be initialized to `2014-08-10 00:00:00`)
 
 **Note:** If the `options.defaultDate` is set or the input element the component is attached to has already a value that takes precedence and the functionality of `useCurrent` is not triggered!
 
@@ -191,12 +193,12 @@ If for example you pass `'day'` to the `setUseCurrent` function and the input fi
 
 Using a Bootstraps collapse to switch between date/time pickers.
 
-#### collapse()
+#### collapse
 
 Returns a `boolean` of the `options.sideBySide`.
 
 
-#### collapse(collapse)
+#### collapse, [collapse]
 
 Takes a `boolean`. If set to `false` the picker will display similar to `sideBySide` except vertical.
 
@@ -212,11 +214,11 @@ See [momentjs](https://github.com/moment/moment/tree/develop/locale) for valid l
 
 You must include `moment-with-locales.js` or a local js file.
 
-#### locale()
+#### locale
 
 Returns the currently set locale of the `options.locale`
 
-#### locale(newLocale)
+#### locale, [newLocale]
 
 Takes a `string` of any valid [moment locale](https://github.com/moment/moment/tree/develop/locale) e.g. `de` for German.
 
@@ -234,17 +236,17 @@ Takes a `string` of any valid [moment locale](https://github.com/moment/moment/t
 
 Sets the picker default date/time. Overrides `useCurrent`
 
-#### defaultDate()
+#### defaultDate
 
 Returns a `moment` with the `options.defaultDate` option configuration or `false` if not set
 
-#### defaultDate(defaultDate)
+#### defaultDate, [defaultDate]
 
-Takes a `string, Date, moment, boolean:false`. Will set the picker's inital date. If a `boolean:false` value is passed the `options.defaultDate` parameter is cleared. 
+Takes a `string, Date, moment, boolean:false`. Will set the picker's initial date. If a `boolean:false` value is passed the `options.defaultDate` parameter is cleared. 
 
 * `TypeError` - if the provided date pass validation, including `disabledDates`, `enabledDates`, `minDate`, `maxDate`, and `daysOfWeekDisabled`
 
-* `TypeError` - if the provided date cannot be parsed by momentjs
+* `TypeError` - if the provided date cannot be parsed by moment.js
 
 ----------------------
 
@@ -253,11 +255,11 @@ Takes a `string, Date, moment, boolean:false`. Will set the picker's inital date
 	Default: false
     Accepts: array of [date, moment, string]
 
-#### disabledDates()
+#### disabledDates
 
 Returns an array with the currently set disabled dates on the component.
 
-#### disabledDates(dates)
+#### disabledDates, [dates]
 
 Takes an `[` `string` or `Date` or `moment` `]` of values and disallows the user to select those days. Setting this takes precedence over `options.minDate`, `options.maxDate` configuration. Also calling this function removes the configuration of options.enabledDates if such exist.
 
@@ -265,14 +267,14 @@ Takes an `[` `string` or `Date` or `moment` `]` of values and disallows the user
 
 ----------------------
 
-#### enabledDates()
+#### enabledDates
 
 Returns an array with the currently set enabled dates on the component.
 
 
-#### enabledDates(dates)
+#### enabledDates, [dates]
 
-Takes an `[` `string` or `Date` or `moment` `]` of values and allows the user to select only from those days. Setting this takes precedence over `options.minDate`, `options.maxDate` configuration. Also calling this function removes the configuration of options.disabledDates if such exist.
+Takes an `[` `string` or `Date` or `moment` `]` of values and allows the user to select only from those days. Setting this takes precedence over `options.minDate`, `options.maxDate` configuration. Also calling this function removes the configuration of `options.disabledDates` if such exist.
 
 **Note:** These values are matched with `Day` granularity.
 
@@ -295,11 +297,11 @@ Takes an `[` `string` or `Date` or `moment` `]` of values and allows the user to
 
 Change the default icons for the pickers functions.
 
-#### icons()
+#### icons
 
 Returns an `Ojbect` of `options.icons` 
 
-#### icons(icons)
+#### icons, [icons]
 
 Takes an `Ojbect` of `strings`.
 
@@ -315,13 +317,13 @@ Takes an `Ojbect` of `strings`.
 
 Defines if moment should use strict date parsing when considering a date to be valid.
 
-#### useStrict()
+#### useStrict
 
 Returns a `boolean` of the `options.useStrict`
 
-#### useStrict(useStrict)
+#### useStrict, [useStrict]
 
-Takes a `boolean`. If `useStrict` is `true`, momentjs parsing rules will be stricter when determining if a date is valid or not.
+Takes a `boolean`. If `useStrict` is `true`, moment.js parsing rules will be stricter when determining if a date is valid or not.
 
 ----------------------
 
@@ -334,11 +336,11 @@ Shows the picker side by side when using the time and date together.
 
 ![SideBySide](img/sideBySide.png)
 
-#### sideBySide()
+#### sideBySide
 
 Returns a `boolean` of the `options.sideBySide`.
 
-#### sideBySide(sideBySide)
+#### sideBySide, [sideBySide]
 
 Takes a `boolean`. If `sideBySide` is `true` and the time picker is used, both components will display side by side instead of collapsing.
 
@@ -352,17 +354,17 @@ Takes a `boolean`. If `sideBySide` is `true` and the time picker is used, both c
 
 Disables the section of days of the week, e.g. weekends.
 
-#### daysOfWeekDisabled()
+#### daysOfWeekDisabled
 
 Returns an array with the `options.daysOfWeekDisabled` configuration setting of the component.
 
-#### daysOfWeekDisabled(daysOfWeek)
+#### daysOfWeekDisabled, [daysOfWeek]
 
 Takes an `[` `Number`:`0` to `6` `]` and disallow the user to select weekdays that exist in this array. This has lower priority over the `options.minDate`, `options.maxDate`, `options.disabledDates` and `options.enabledDates` configuration settings.
 
 ##### Emits
 
-* `dp.change` - if the currently selected moment falls in the values passed on the daysOfWeek parameter. (waiting for #472 to close in order to finalize this part)
+* `change.datetimepicker` - if the currently selected moment falls in the values passed on the daysOfWeek parameter. (waiting for #472 to close in order to finalize this part)
 
 * `dp.error` - if the currently selected moment falls in the values passed on the daysOfWeek parameter. (waiting for #472 to close in order to finalize this part)
 
@@ -376,11 +378,11 @@ Shows the week of the year to the left of first day of the week.
 
 ![calendarWeek](img/calendarWeeks.png)
 
-#### calendarWeeks()
+#### calendarWeeks
 
 Returns a `boolean` with the current `options.calendarWeeks` option configuration
 
-#### calendarWeeks(boolean)
+#### calendarWeeks, [boolean]
 
 Takes a `boolean` variable to set if the week numbers will appear to the left on the days view
 
@@ -395,11 +397,11 @@ The default view to display when the picker is shown.
 
 **Note**: To limit the picker to selecting, for instance the year and month, use `format: MM/YYYY`.
 
-#### viewMode()
+#### viewMode
 
 Returns a `string` of the `options.viewMode`.
 
-#### viewMode(newViewMode)
+#### viewMode, [newViewMode]
 
 Takes a `string`. Valid values are `'days'`, `'months'`, `'years'` and `'decades'`
 
@@ -418,11 +420,11 @@ Changes the placement of the icon toolbar.
 
 ![toolbarPlacement](img/toolbarPlacement.png)
 
-#### toolbarplacement()
+#### toolbarplacement
 
 Returns a `string` variable with the currently set `options.toolbarplacement` option.
 
-#### toolbarplacement(string)
+#### toolbarplacement, [string]
 
 Takes a `string` value. Valid values are `'default'`, `'top'` and `'bottom'`.
 
@@ -438,11 +440,11 @@ Show the "Today" button in the icon toolbar.
 
 Clicking the "Today" button will set the calendar view and set the date to `now`.
 
-#### showTodayButton()
+#### showTodayButton
 
 Returns a `boolean` variable with the currently set `options.showTodayButton` option.
 
-#### showTodayButton(boolean)
+#### showTodayButton, [boolean]
 
 Takes a `boolean` variable to set if the Today button will appear on the widget
 
@@ -456,11 +458,11 @@ Show the "Clear" button in the icon toolbar.
 
 Clicking the "Clear" button will set the calendar to null.
 
-#### showClear()
+#### showClear
 
 Returns a `boolean` variable with the currently set `options.showClear` option.
 
-#### showClear(boolean)
+#### showClear, [boolean]
 
 Takes a `boolean` variable to set if the clear date button will appear on the widget
 
@@ -474,11 +476,11 @@ Show the "Close" button in the icon toolbar.
 
 Clicking the "Close" button will call `hide()`
 
-#### showClose()
+#### showClose
 
 Returns a `boolean` variable with the currently set `options.showClose` option.
 
-#### showClose(boolean)
+#### showClose, [boolean]
 
 Takes a `boolean` value.
 
@@ -496,11 +498,11 @@ If `true`, an icon will be displayed on the toolbar that will hide the picker
              horizontal: 'auto', 'left', 'right'
              vertical: 'auto', 'top', 'bottom'
 
-#### widgetPositioning()
+#### widgetPositioning
 
 Returns the currently set `options.widgetPositioning` object containing two keys `horizontal` and `vertical`
 
-#### widgetPositioning(positioningObject)
+#### widgetPositioning, [positioningObject]
 
 Takes an object parameter that can contain two keys `vertical` and `horizontal` each having a value of `'auto', 'top', 'bottom'` for `vertical` and `'auto', 'left', 'right'` for `horizontal` which defines where the dropdown with the widget will appear relative to the input element the component is attached to.
 
@@ -515,11 +517,11 @@ Takes an object parameter that can contain two keys `vertical` and `horizontal` 
 
 On picker show, places the widget at the identifier (string) or jQuery object **if** the element has css `position: 'relative'`
 
-#### widgetParent()
+#### widgetParent
 
 Returns a `$(element)` variable with the currently set `options.widgetParent` option.
 
-#### widgetParent(widgetParent)
+#### widgetParent, [widgetParent]
 
 Takes a `string` or `$(element)` value.
 
@@ -531,11 +533,11 @@ Takes a `string` or `$(element)` value.
 
 Will cause the date picker to stay open after selecting a date.
 
-#### keepOpen()
+#### keepOpen
 
 Returns a `boolean` variable with the currently set `options.keepOpen` option.
 
-#### keepOpen(boolean)
+#### keepOpen, [boolean]
 
 Takes a `boolean` value.
 
@@ -547,11 +549,11 @@ Takes a `boolean` value.
 
 Will display the picker inline without the need of a input field. This will also hide borders and shadows.
 
-#### inline()
+#### inline
 
 Returns a `boolean` variable with the currently set `options.inline` option.
 
-#### inline(boolean)
+#### inline, [boolean]
 
 Takes a `boolean` value.
 
@@ -565,11 +567,11 @@ Takes a `boolean` value.
 
 Will cause the date picker to **not** revert or overwrite invalid dates.
 
-#### keepInvalid()
+#### keepInvalid
 
 Returns a `string` variable with the currently set `options.keepInvalid` option.
 
-#### keepInvalid(boolean)
+#### keepInvalid, [boolean]
 
 Takes a `boolean` value.
 
@@ -650,22 +652,20 @@ If `true`, invalid dates will not be reverted to a previous selection or changed
 
 Allows for custom events to fire on keyboard press.
 
-#### keyBinds()
+#### keyBinds
 
 Returns a `string` variable with the currently set `options.keyBinds` option.
 
-#### keyBinds(object)
+#### keyBinds, [object]
 
 Takes an `object` value.
 
-Allows for several keyBinding functions to be specified for ease of access or accessibility. See the options page for defaults.
+Allows for several `keyBinding` functions to be specified for ease of access or accessibility. See the options page for defaults.
 
 ----------------------
 
 
 ### debug 
-
-<small>4.7.14</small>
 
 	Default: false
 
@@ -676,17 +676,15 @@ Will cause the date picker to stay open after a `blur` event.
 
 ### ignoreReadonly
 
-<small>4.7.14</small>
-
 	Default: false
 
-Allow date picker show event to fire even when the associated input element has the `readonly="readonly"`property.
+Allow date picker show event to fire even when the associated input element has the `readonly="readonly"` property.
 
-#### ignoreReadonly()
+#### ignoreReadonly
 
 Returns a `boolean` variable with the currently set `options.ignoreReadonly` option.
 
-#### ignoreReadonly(boolean)
+#### ignoreReadonly, [boolean]
 
 Takes a `boolean` value.
 
@@ -696,17 +694,15 @@ Set this to `true` to allow the picker to be used even if the input field is `re
 
 ### disabledTimeIntervals 
 
-<small>4.14.30</small>
-
 	Default: false
 
 Disables time selection between the given `moments`.
 
-#### disabledTimeIntervals()
+#### disabledTimeIntervals
 
 Returns an `array` variable with the currently set `options.disabledTimeIntervals` option.
 
-#### disabledTimeIntervals(array)
+#### disabledTimeIntervals, [array]
 
 Takes a `array` value.
 
@@ -722,17 +718,15 @@ Will disable times between 12-8am and 6-12pm today
 
 ### allowInputToggle 
 
-<small>4.14.30</small>
-
 	Default: false
 
 If `true`, the picker will show on textbox focus and icon click when used in a button group.
 
-#### allowInputToggle()
+#### allowInputToggle
 
 Returns a `boolean` variable with the currently set `options.allowInputToggle` option.
 
-#### allowInputToggle(boolean)
+#### allowInputToggle, [boolean]
 
 Takes a `boolean` value.
 
@@ -740,19 +734,17 @@ If `true`, the picker will show on textbox focus and icon click when used in a b
 
 ----------------------
 
-### focusOnShow 
-
-<small>4.14.30</small>
+### focusOnShow
 
 	Default: true
 
 If `false`, the textbox will not be given focus when the picker is shown.
 
-#### focusOnShow()
+#### focusOnShow
 
 Returns a `boolean` variable with the currently set `options.focusOnShow` option.
 
-#### focusOnShow(boolean)
+#### focusOnShow, [boolean]
 
 Takes a `boolean` value.
 
@@ -761,15 +753,13 @@ If `false`, the textbox will not be given focus when the picker is shown
 ----------------------
 ### en/disabledHours
 
-<small>4.14.30</small> Issue: #851
-
 	Default: false
 
-#### disabledHours()
+#### disabledHours
 
 Returns an `array` variable with the currently set `options.en/disabledHours` option.
 
-#### disabledHours(boolean)
+#### disabledHours, boolean
 
 Takes a `array` value.
 
@@ -782,9 +772,7 @@ Like `en/disabledDates`, these options are mutually exclusive and will reset one
 
 ----------------------
 
-### viewDate 
-
-<small>4.14.30</small>
+### viewDate
 
 	Default: false
 
@@ -794,17 +782,15 @@ This will change the `viewDate` without changing or setting the selected date.
 
 ### parseInputDate
 
-<small>4.14.30</small> Issue #1095
-
-#### parseInputDate()
+#### parseInputDate
 
 Returns a `function` with the currently set `options.parseInputDate`
 
-#### parseInputDate(function)
+#### parseInputDate, [function]
 
 Takes a `function`
 
-Allows custom input formatting For example: the user can enter 'yesterday' or '30 days ago'.
+Allows custom input formatting For example: the user can enter 'yesterday' or '30 days ago.
 
 Example:
 
@@ -846,9 +832,7 @@ var parseInputDate = function(inputDate) {
 
 ----------------------
 
-### tooltips 
-
-<small>4.15.35</small>
+### tooltips
 
 ```
 tooltips: {
@@ -871,39 +855,34 @@ tooltips: {
 
 This will change the `tooltips` over each icon to a custom string.
 
-#### tooltips()
+#### tooltips
 
 Returns an `Ojbect` of `options.tooltips` 
 
-#### tooltips(tooltips)
+#### tooltips, [tooltips]
 
 Takes an `Ojbect` of `strings`.
 
 ##### Throws
 
-* `TypeError` - if tooltips parameter is not an `Ojbect`
+* `TypeError` - if `tooltips` parameter is not an `Ojbect`
 
 ----------------------
 
 
-### timeZone 
-
-<small>4.17.37</small>
-
-```
-timeZone: ''
-```
+### timeZone
+    timeZone: ''
 
 Allows the setting of the Time Zone. You must include [`moment-timezone.js`](http://momentjs.com/timezone/) and `moment-timzone` data. See moment timezone documentation for usage.
 
-#### timeZone()
+#### timeZone
 
 Returns an `string` of `options.timeZone` 
 
-#### timeZone(timeZone)
+#### timeZone, [timeZone]
 
 Takes an `string` of a valid timezone.
 
 ##### Throws
 
-* `TypeError` - if tooltips parameter is not an `string`
+* `TypeError` - if `tooltips` parameter is not an `string`

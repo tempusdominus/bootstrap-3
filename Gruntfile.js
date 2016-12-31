@@ -1,82 +1,29 @@
 module.exports = function (grunt) {
-    'use strict';
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
             target: {
                 files: {
-                    'build/js/bootstrap-3-datetimepicker.min.js': 'src/js/bootstrap-3-datetimepicker.js'
+                    'build/js/<%= pkg.name %>.min.js': 'build/js/<%= pkg.name %>.js'
                 }
             },
             options: {
                 mangle: true,
                 compress: {
-                    dead_code: false // jshint ignore:line
+                    dead_code: false // eslint-disable-line
                 },
                 output: {
-                    ascii_only: true // jshint ignore:line
+                    ascii_only: true // eslint-disable-line
                 },
                 report: 'min',
                 preserveComments: 'some'
             }
         },
-        jshint: {
-            all: [
-                'Gruntfile.js', 'src/js/*.js', 'test/*.js'
-            ],
+        eslint: {
             options: {
-                'browser': true,
-                'node': true,
-                'jquery': true,
-                'boss': false,
-                'curly': true,
-                'debug': false,
-                'devel': false,
-                'eqeqeq': true,
-                'bitwise': true,
-                'eqnull': true,
-                'evil': false,
-                'forin': true,
-                'immed': false,
-                'laxbreak': false,
-                'newcap': true,
-                'noarg': true,
-                'noempty': false,
-                'nonew': false,
-                'onevar': true,
-                'plusplus': false,
-                'regexp': false,
-                'undef': true,
-                'sub': true,
-                'strict': true,
-                'unused': true,
-                'white': true,
-                'es3': true,
-                'camelcase': true,
-                'quotmark': 'single',
-                'globals': {
-                    'define': false,
-                    'moment': false,
-                    // Jasmine
-                    'jasmine': false,
-                    'describe': false,
-                    'xdescribe': false,
-                    'expect': false,
-                    'it': false,
-                    'xit': false,
-                    'spyOn': false,
-                    'beforeEach': false,
-                    'afterEach': false
-                }
-            }
-        },
-        jscs: {
-            all: [
-                'Gruntfile.js', 'src/js/*.js', 'test/*.js'
-            ],
-            options: {
-                config: '.jscs.json'
-            }
+                configFile: 'eslintrc.json'
+            },
+            target: ['Gruntfile.js', 'src/js/*.js', 'test/*.js']
         },
         env: {
             paris: {
@@ -97,15 +44,10 @@ module.exports = function (grunt) {
                     specs: 'test/*Spec.js',
                     helpers: 'test/*Helper.js',
                     host: 'http://127.0.0.1:8099',
-                    styles: [
-                        'node_modules/bootstrap/dist/css/bootstrap.min.css',
-                        'build/css/bootstrap-datetimepicker.min.css'
-                    ],
                     vendor: [
                         'node_modules/jquery/dist/jquery.min.js',
                         'node_modules/moment/min/moment-with-locales.min.js',
-                        'node_modules/moment-timezone/moment-timezone.js',
-                        'node_modules/bootstrap/dist/js/bootstrap.min.js'
+                        'node_modules/moment-timezone/moment-timezone.js'
                     ],
                     display: 'none',
                     summary: 'true'
@@ -113,15 +55,8 @@ module.exports = function (grunt) {
             }
         },
         nugetpack: {
-            less: {
-                src: 'src/nuget/Bootstrap.v3.Datetimepicker.nuspec',
-                dest: 'build/nuget',
-                options: {
-                    version: '<%= pkg.version %>'
-                }
-            },
-            css: {
-                src: 'src/nuget/Bootstrap.v3.Datetimepicker.CSS.nuspec',
+            core: {
+                src: 'src/nuget/Tempus.Dominus.Core.nuspec',
                 dest: 'build/nuget',
                 options: {
                     version: '<%= pkg.version %>'
@@ -129,33 +64,33 @@ module.exports = function (grunt) {
             }
         },
         babel: {
-            dev: {
-                options: {
-                    sourceMap: true,
-                    compact: false
-                },
-                files: {
-                    'src/js/bootstrap-3-datetimepicker.js': 'src/js/bootstrap-3-datetimepicker.js'
-                }
-            },
+            //dev: {
+            //    options: {
+            //        sourceMap: true,
+            //        compact: false
+            //    },
+            //    files: {
+            //        'src/js/<%= pkg.name %>.js': 'src/js/<%= pkg.name %>.js'
+            //    }
+            //},
             dist: {
                 options: {
                     compact: false,
-                    "presets": [
+                    'presets': [
                         [
-                            "es2015",
+                            'es2015',
                             {
-                                "modules": false,
-                                "loose": true
+                                'modules': false,
+                                'loose': true
                             }
                         ]
                     ],
-                    "plugins": [
-                        "transform-es2015-modules-strip"
+                    'plugins': [
+                        'transform-es2015-modules-strip'
                     ]
                 },
                 files: {
-                    'build/js/bootstrap-3-datetimepicker.js': 'build/js/bootstrap-3-datetimepicker.js'
+                    'build/js/<%= pkg.name %>.js': 'build/js/<%= pkg.name %>.js'
                 }
             }
         },
@@ -166,12 +101,12 @@ module.exports = function (grunt) {
                     return src.replace(/^(export|import).*/gm, '');
                 }
             },
-            bootstrap: {
+            core: {
                 src: [
-                    'node_modules/tempusdominus-core/src/js/core.js',
-                    'src/js/bootstrap-3-datetimepicker.js'
+                    'node_modules/tempusdominus-core/src/js/tempusdominus-core.js',
+                    'src/js/<%= pkg.name %>.js'
                 ],
-                dest: 'build/js/bootstrap-3-datetimepicker.js'//'dist/js/<%= pkg.name %>.js'
+                dest: 'build/js/<%= pkg.name %>.js'
             }
         },
         less: {
@@ -182,7 +117,7 @@ module.exports = function (grunt) {
                     paths: 'node_modules'
                 },
                 files: {
-                    'build/css/bootstrap-3-datetimepicker.min.css': 'src/less/bootstrap-3-datetimepicker-build.less'
+                    'build/css/<%= pkg.name %>.min.css': 'src/less/<%= pkg.name %>-build.less'
                 }
             },
             development: {
@@ -190,15 +125,15 @@ module.exports = function (grunt) {
                     paths: 'node_modules'
                 },
                 files: {
-                    'build/css/bootstrap-3-datetimepicker.css': 'src/less/bootstrap-3-datetimepicker-build.less'
+                    'build/css/<%= pkg.name %>.css': 'src/less/<%= pkg.name %>-build.less'
                 }
             }
         },
         watch: {
             src: {
-                files: '<%= concat.bootstrap.src %>',
+                files: '<%= concat.core.src %>',
                 tasks: ['default']
-            },
+            }
         }
     });
 
@@ -210,26 +145,29 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-nuget');
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('default', ['concat', 'babel:dist']);//['jshint', 'jscs', 'less', 'env:paris', 'connect', 'jasmine']);
+    grunt.registerTask('default', 'build');// ['concat', 'eslint', 'babel:dist']);// 'env:paris', 'connect', 'jasmine']);
     grunt.registerTask('build:travis', [
         // code style
-        'jshint', 'jscs',
+        'eslint', 'jscs',
         // build
-        'uglify', 'less',
+        'babel:dist', 'uglify', 'less'//,
         // tests
-        'env:paris', 'connect', 'jasmine'
+        //'env:paris', 'connect', 'jasmine'
     ]);
 
     // Task to be run when building
-    grunt.registerTask('build', ['babel']);// ['jshint', 'jscs', 'uglify', 'less']);
+    grunt.registerTask('build', ['concat', 'eslint', 'babel', 'uglify']);
 
-    grunt.registerTask('test', ['jshint', 'jscs', 'uglify', 'less', 'env:paris', 'connect', 'jasmine']);
+    grunt.registerTask('test', ['build', 'env:paris', 'connect', 'jasmine']);
 
     grunt.registerTask('docs', 'Generate docs', function () {
         grunt.util.spawn({
             cmd: 'mkdocs',
             args: ['build', '--clean']
         });
+
+        grunt.file.copy('build/js/tempusdominus-bootstrap-3.js', 'src/docs/js/tempusdominus-bootstrap-3.js');
+        grunt.file.copy('build/css/tempusdominus-bootstrap-3.css', 'src/docs/css/tempusdominus-bootstrap-3.css');
     });
 
     grunt.registerTask('release', function (version) {

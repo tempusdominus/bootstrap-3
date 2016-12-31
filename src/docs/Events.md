@@ -1,6 +1,6 @@
 ## Events
 
-### dp.hide
+### hide.datetimepicker
 
 Fired when the widget is hidden.
 
@@ -20,13 +20,13 @@ Emitted from:
 
 ----------------------
 
-### dp.show
+### show.datetimepicker
 
 Fired when the widget is shown.
 
 Parameters:
 
-No parameters are include, listen to `dp.change` instead
+No parameters are include, listen to `change.datetimepicker` instead
 
 Emitted from:
 
@@ -35,7 +35,7 @@ Emitted from:
 
 ----------------------
 
-### dp.change
+### change.datetimepicker
 
 Fired when the date is changed, including when changed to a non-date (e.g. When keepInvalid=true).
 
@@ -59,7 +59,7 @@ Emitted from:
 
 ----------------------
 
-### dp.error
+### error.datetimepicker
 
 Fired when a selected date fails to pass validation.
 
@@ -81,9 +81,7 @@ Emmited from:
 
 ----------------------
 
-### dp.update
-
-<small>4.14.30</small>
+### update.datetimepicker
 
 Fired (in most cases) when the `viewDate` changes. E.g. Next and Previous buttons, selecting a year.
 

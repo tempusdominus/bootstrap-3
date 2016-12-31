@@ -1,16 +1,16 @@
 {
-  "name": "bootstrap-3-datetimepicker",
+  "name": "tempusdominus-bootstrap-3",
   "version": "5.0.0-aplha",
   "main": [
-    "build/css/bootstrap-3-datetimepicker.min.css",
-    "build/js/bootstrap-3-datetimepicker.min.js"
+    "build/css/tempusdominus-bootstrap-3.min.css",
+    "build/js/tempusdominus-bootstrap-3.min.js"
   ],
   "dependencies": {
     "jquery": ">=1.8.3",
     "moment": ">=2.10.5",
     "tempusdominus-core": "5.0.0-alpha"
   },
-  "homepage": "https://github.com/tempusdominus/bootstrap-3-datetimepicker",
+  "homepage": "https://github.com/tempusdominus/bootstrap-3",
   "authors": [
     "Eonasdan"
   ],

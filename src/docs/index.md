@@ -1,19 +1,19 @@
-#Bootstrap 3 Datepicker v4 Docs
+# Tempus Dominus - Bootstrap3 v5 Docs
 
 <div class="alert alert-info">
     <strong>Note</strong>
-    All functions are accessed via the <code>data</code> attribute e.g. <code>$('#datetimepicker').data("DateTimePicker").FUNCTION()</code>
+    All functions are accessed via the <code>$('#datetimepicker').datetimepicker(FUNCTION)</code>
 </div>
 
 ### Minimum Setup
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                    <span class="input-group-addon" data-target="#datetimepicker1" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -32,11 +32,11 @@
 ```
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                    <span class="input-group-addon" data-target="#datetimepicker1" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -57,11 +57,11 @@
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+                    <span class="input-group-addon" data-target="#datetimepicker2" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -82,11 +82,11 @@
 ```
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+                    <span class="input-group-addon" data-target="#datetimepicker2" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -109,11 +109,11 @@
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker3'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
+                    <span class="input-group-addon" data-target="#datetimepicker3" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
                 </div>
@@ -134,11 +134,11 @@
 ```
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker3'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
+                    <span class="input-group-addon" data-target="#datetimepicker3" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
                 </div>
@@ -161,19 +161,19 @@
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker3'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time"></span>
+                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+                    <span class="input-group-addon" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                        <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker3').datetimepicker({
+                $('#datetimepicker4').datetimepicker({
                     format: 'L'
                 });
             });
@@ -186,20 +186,20 @@
 ```
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker3'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time"></span>
+                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+                    <span class="input-group-addon" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                        <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker3').datetimepicker({
-                    format: 'LT'
+                $('#datetimepicker4').datetimepicker({
+                    format: 'L'
                 });
             });
         </script>
@@ -213,12 +213,12 @@
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
-            <input type='text' class="form-control" id='datetimepicker4' />
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker4').datetimepicker();
+                $('#datetimepicker5').datetimepicker();
             });
         </script>
     </div>
@@ -230,12 +230,12 @@
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
-            <input type='text' class="form-control" id='datetimepicker4' />
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="datetimepicker5" />
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker4').datetimepicker();
+                $('#datetimepicker5').datetimepicker();
             });
         </script>
     </div>
@@ -248,11 +248,11 @@
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+         <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker5'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker6" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker6"/>
+                    <span class="input-group-addon" data-target="#datetimepicker6" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -260,7 +260,7 @@
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker5').datetimepicker({
+                $('#datetimepicker6').datetimepicker({
                     defaultDate: "11/1/2013",
                     disabledDates: [
                         moment("12/25/2013"),
@@ -278,11 +278,11 @@
 ```
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+         <div class="col-sm-6">
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker5'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
+                <div class="input-group date" id="datetimepicker6" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker6"/>
+                    <span class="input-group-addon" data-target="#datetimepicker6" data-toggle="datetimepicker">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -290,7 +290,7 @@
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker5').datetimepicker({
+                $('#datetimepicker6').datetimepicker({
                     defaultDate: "11/1/2013",
                     disabledDates: [
                         moment("12/25/2013"),
@@ -311,9 +311,9 @@
 <div class="container">
     <div class='col-md-5'>
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
+           <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7"/>
+                <span class="input-group-addon" data-target="#datetimepicker7" data-toggle="datetimepicker">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
@@ -321,9 +321,9 @@
     </div>
     <div class='col-md-5'>
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
+           <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8"/>
+                <span class="input-group-addon" data-target="#datetimepicker8" data-toggle="datetimepicker">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
@@ -332,15 +332,15 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker6').datetimepicker();
-        $('#datetimepicker7').datetimepicker({
+        $('#datetimepicker7').datetimepicker();
+        $('#datetimepicker8').datetimepicker({
 			useCurrent: false
 		});
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        $("#datetimepicker7").on("change.datetimepicker", function (e) {
+            $('#datetimepicker8').datetimepicker('minDate', e.date);
         });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        $("#datetimepicker8").on("change.datetimepicker", function (e) {
+            $('#datetimepicker7').datetimepicker('maxDate', e.date);
         });
     });
 </script>
@@ -351,9 +351,9 @@
 <div class="container">
     <div class='col-md-5'>
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
+           <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7"/>
+                <span class="input-group-addon" data-target="#datetimepicker7" data-toggle="datetimepicker">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
@@ -361,9 +361,9 @@
     </div>
     <div class='col-md-5'>
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
+           <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8"/>
+                <span class="input-group-addon" data-target="#datetimepicker8" data-toggle="datetimepicker">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
@@ -372,15 +372,15 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker6').datetimepicker();
-        $('#datetimepicker7').datetimepicker({
-			useCurrent: false //Important! See issue #1075
+        $('#datetimepicker7').datetimepicker();
+        $('#datetimepicker8').datetimepicker({
+			useCurrent: false
 		});
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
         $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            $('#datetimepicker8').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker8").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").maxDate(e.date);
         });
     });
 </script>
@@ -391,20 +391,19 @@
 ### Custom Icons
 
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker8'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="fa fa-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker9" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker9"/>
+                <span class="input-group-addon" data-target="#datetimepicker9" data-toggle="datetimepicker">
+                    <span class="fa fa-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker8').datetimepicker({
+            $('#datetimepicker9').datetimepicker({
                 icons: {
                     time: "fa fa-clock-o",
                     date: "fa fa-calendar",
@@ -420,20 +419,19 @@
 
 ```
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker8'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="fa fa-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker9" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker9"/>
+                <span class="input-group-addon" data-target="#datetimepicker9" data-toggle="datetimepicker">
+                    <span class="fa fa-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker8').datetimepicker({
+            $('#datetimepicker9').datetimepicker({
                 icons: {
                     time: "fa fa-clock-o",
                     date: "fa fa-calendar",
@@ -451,20 +449,19 @@
 ### View Mode
 
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker9'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker10" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker10"/>
+                <span class="input-group-addon" data-target="#datetimepicker10" data-toggle="datetimepicker">
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker9').datetimepicker({
+            $('#datetimepicker10').datetimepicker({
                 viewMode: 'years'
             });
         });
@@ -475,20 +472,19 @@
 
 ```
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker9'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker10" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker10"/>
+                <span class="input-group-addon" data-target="#datetimepicker10" data-toggle="datetimepicker">
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker9').datetimepicker({
+            $('#datetimepicker10').datetimepicker({
                 viewMode: 'years'
             });
         });
@@ -501,20 +497,19 @@
 ### Min View Mode
 
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker10'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker11" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker11"/>
+                <span class="input-group-addon" data-target="#datetimepicker11" data-toggle="datetimepicker">
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker10').datetimepicker({
+            $('#datetimepicker11').datetimepicker({
                 viewMode: 'years',
                 format: 'MM/YYYY'
             });
@@ -526,20 +521,19 @@
 
 ```
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker10'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker11" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker11"/>
+                <span class="input-group-addon" data-target="#datetimepicker11" data-toggle="datetimepicker">
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker10').datetimepicker({
+            $('#datetimepicker11').datetimepicker({
                 viewMode: 'years',
                 format: 'MM/YYYY'
             });
@@ -554,20 +548,19 @@
 ### Disabled Days of the Week
 
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker11'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker12" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker12"/>
+                <span class="input-group-addon" data-target="#datetimepicker12" data-toggle="datetimepicker">
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker11').datetimepicker({
+            $('#datetimepicker12').datetimepicker({
                 daysOfWeekDisabled: [0, 6]
             });
         });
@@ -578,20 +571,19 @@
 
 ```
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="col-sm-6">
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker11'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
+            <div class="input-group date" id="datetimepicker12" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker12"/>
+                <span class="input-group-addon" data-target="#datetimepicker12" data-toggle="datetimepicker">
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker11').datetimepicker({
+            $('#datetimepicker12').datetimepicker({
                 daysOfWeekDisabled: [0, 6]
             });
         });
@@ -607,13 +599,13 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-8">
-                <div id="datetimepicker12"></div>
+                <div id="datetimepicker13"></div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker12').datetimepicker({
+            $('#datetimepicker13').datetimepicker({
                 inline: true,
                 sideBySide: true
             });
@@ -628,13 +620,13 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-8">
-                <div id="datetimepicker12"></div>
+                <div id="datetimepicker13"></div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker12').datetimepicker({
+            $('#datetimepicker13').datetimepicker({
                 inline: true,
                 sideBySide: true
             });
