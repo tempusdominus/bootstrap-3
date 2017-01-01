@@ -214,7 +214,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
+            <input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
         </div>
         <script type="text/javascript">
             $(function () {
@@ -231,7 +231,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="datetimepicker5" />
+            <input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
         </div>
         <script type="text/javascript">
             $(function () {
@@ -376,11 +376,11 @@
         $('#datetimepicker8').datetimepicker({
 			useCurrent: false
 		});
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker8').data("DateTimePicker").minDate(e.date);
+        $("#datetimepicker7").on("change.datetimepicker", function (e) {
+            $('#datetimepicker8').datetimepicker('minDate', e.date);
         });
-        $("#datetimepicker8").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").maxDate(e.date);
+        $("#datetimepicker8").on("change.datetimepicker", function (e) {
+            $('#datetimepicker7').datetimepicker('maxDate', e.date);
         });
     });
 </script>
