@@ -10,3 +10,7 @@
 * Bootstrap 4-esk plugin creation style
 * All events are namespaced properly `{event}.datetimepicker`
 * Added a jquery no conflict option
+
+### Other changes
+
+* moved `showTodayButton`, `showClear` and `showClose` into `options.buttons`

@@ -1,4 +1,4 @@
-# Tempus Dominus - Bootstrap3 v5 Docs
+# Bootstrap3 v5 Docs
 
 <div class="alert alert-info">
     <strong>Note</strong>
@@ -607,7 +607,10 @@
         $(function () {
             $('#datetimepicker13').datetimepicker({
                 inline: true,
-                sideBySide: true
+                sideBySide: true,
+				buttons:{
+					showToday:true
+				}
             });
         });
     </script>

@@ -432,59 +432,28 @@ Changes the placement of the toolbar where the today, clear, component switch ic
 
 ----------------------
 
-### showTodayButton
+### buttons
 
-	Default: false
+	Default: {
+                showToday: false,
+                showClear: false,
+                showClose: false
+            }
+    Accepts: object with all or some of the parameters above
 
-Show the "Today" button in the icon toolbar.
+Change the default toolbar buttons for the pickers functions.
 
-Clicking the "Today" button will set the calendar view and set the date to `now`.
+#### buttons
 
-#### showTodayButton
+Returns an `Ojbect` of `options.buttons` 
 
-Returns a `boolean` variable with the currently set `options.showTodayButton` option.
+#### buttons, [buttons]
 
-#### showTodayButton, [boolean]
+Takes an `Ojbect` of `boolean`.
 
-Takes a `boolean` variable to set if the Today button will appear on the widget
+##### Throws
 
-----------------------
-
-### showClear
-
-	Default: false
-
-Show the "Clear" button in the icon toolbar.
-
-Clicking the "Clear" button will set the calendar to null.
-
-#### showClear
-
-Returns a `boolean` variable with the currently set `options.showClear` option.
-
-#### showClear, [boolean]
-
-Takes a `boolean` variable to set if the clear date button will appear on the widget
-
-----------------------
-
-### showClose
-
-	Default: false
-
-Show the "Close" button in the icon toolbar.
-
-Clicking the "Close" button will call `hide()`
-
-#### showClose
-
-Returns a `boolean` variable with the currently set `options.showClose` option.
-
-#### showClose, [boolean]
-
-Takes a `boolean` value.
-
-If `true`, an icon will be displayed on the toolbar that will hide the picker
+* `TypeError` - if buttons parameter is not an `Ojbect`
 
 ----------------------
 

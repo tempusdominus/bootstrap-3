@@ -148,7 +148,7 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
 
         _getToolbar() {
             const row = [];
-            if (this._options.showTodayButton) {
+            if (this._options.buttons.showToday) {
                 row.push($('<td>').append($('<a>').attr({
                     'data-action': 'today',
                     'title': this._options.tooltips.today
@@ -160,19 +160,19 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
                     'title': this._options.tooltips.selectTime
                 }).append($('<span>').addClass(this._options.icons.time))));
             }
-            if (this._options.showClear) {
+            if (this._options.buttons.showClear) {
                 row.push($('<td>').append($('<a>').attr({
                     'data-action': 'clear',
                     'title': this._options.tooltips.clear
                 }).append($('<span>').addClass(this._options.icons.clear))));
             }
-            if (this._options.showClose) {
+            if (this._options.buttons.showClose) {
                 row.push($('<td>').append($('<a>').attr({
                     'data-action': 'close',
                     'title': this._options.tooltips.close
                 }).append($('<span>').addClass(this._options.icons.close))));
             }
-            return $('<table>').addClass('table-condensed').append($('<tbody>').append($('<tr>').append(row)));
+            return row.length === 0 ? '' : $('<table>').addClass('table-condensed').append($('<tbody>').append($('<tr>').append(row)));
         }
 
         _getTemplate() {
@@ -199,7 +199,7 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
                     template.append(toolbar);
                 }
                 template.append($('<div>').addClass('row').append(dateView.addClass('col-md-6')).append(timeView.addClass('col-md-6')));
-                if (this._options.toolbarPlacement === 'bottom' || options.toolbarPlacement === 'default') {
+                if (this._options.toolbarPlacement === 'bottom' || this._options.toolbarPlacement === 'default') {
                     template.append(toolbar);
                 }
                 return template;

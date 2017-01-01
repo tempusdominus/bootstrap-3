@@ -87,7 +87,7 @@ module.exports = function (grunt) {
         babel: {
             dev: {
                 options: {
-                    sourceMap: true,
+                    sourceMap: false,
                     compact: false
                 },
                 files: {
@@ -177,7 +177,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-nuget');
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('default', 'build');// ['concat', 'eslint', 'babel:dist']);// 'env:paris', 'connect', 'jasmine']);
+    grunt.registerTask('default', 'build');
     grunt.registerTask('build:travis', [
         // code style
         'eslint', 'jscs',
@@ -188,13 +188,17 @@ module.exports = function (grunt) {
     ]);
 
     // Task to be run when building
-    grunt.registerTask('build', ['babel:dev', 'concat', 'eslint', 'babel:dist', 'stamp', 'uglify']);
+    grunt.registerTask('build', ['babel:dev', 'concat', 'eslint', 'babel:dist', 'stamp', 'uglify', 'copy']);
 
     grunt.registerTask('test', ['build', 'env:paris', 'connect', 'jasmine']);
 
-    grunt.registerTask('docs', 'Generate docs', function () {
+    grunt.registerTask('copy', 'Generate docs', function () {
         grunt.file.copy('build/js/tempusdominus-bootstrap-3.js', 'src/docs/theme/js/tempusdominus-bootstrap-3.js');
         grunt.file.copy('build/css/tempusdominus-bootstrap-3.css', 'src/docs/theme/css/tempusdominus-bootstrap-3.css');
+    });
+
+    grunt.registerTask('docs', 'Generate docs', function () {
+        grunt.task.run(['copy']);
 
         grunt.util.spawn({
             cmd: 'mkdocs',
