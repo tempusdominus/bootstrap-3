@@ -1,32 +1,3 @@
-/*!
- * Tempus Dominus Bootstrap3 v5.0.0-alpha (https://tempusdominus.github.io/bootstrap-3/)
- * Copyright 2016-2016 Jonathan Peterson
- * Licensed under MIT (https://github.com/tempusdominus/bootstrap-3/blob/master/LICENSE)
- */
-
-if (typeof jQuery === 'undefined') {
-  throw new Error('Tempus Dominus Bootstrap3\'s requires jQuery. jQuery must be included before Tempus Dominus Bootstrap3\'s JavaScript.')
-}
-
-+function ($) {
-  var version = $.fn.jquery.split(' ')[0].split('.')
-  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] >= 4)) {
-    throw new Error('Tempus Dominus Bootstrap3\'s requires at least jQuery v1.9.1 but less than v4.0.0')
-  }
-}(jQuery);
-
-
-if (typeof moment === 'undefined') {
-  throw new Error('Tempus Dominus Bootstrap3\'s requires moment.js. Moment.js must be included before Tempus Dominus Bootstrap3\'s JavaScript.')
-}
-
-var version = moment.version.split('.')
-if ((version[0] <= 2 && version[1] < 17) || (version[0] >= 3)) {
-  throw new Error('Tempus Dominus Bootstrap3\'s requires at least moment.js v2.17.0 but less than v3.0.0')
-}
-
-+function () {
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51,7 +22,6 @@ function _classCallCheck(instance, Constructor) {
     }
 }
 
-//# sourceMappingURL=tempusdominus-core.js.map
 var DateTimePicker = function ($) {
     var NAME = 'datetimepicker',
         VERSION = '5.0.0-alpha.1',
@@ -390,7 +360,7 @@ var DateTimePicker = function ($) {
                 this._element.data('date', '');
                 this._notifyEvent({
                     type: DateTimePicker.Event.CHANGE,
-                    date: false,
+                    _date: false,
                     oldDate: oldDate
                 });
                 this._update();
@@ -418,7 +388,7 @@ var DateTimePicker = function ($) {
                 this._update();
                 this._notifyEvent({
                     type: DateTimePicker.Event.CHANGE,
-                    date: this._date.clone(),
+                    _date: this._date.clone(),
                     oldDate: oldDate
                 });
             } else {
@@ -429,13 +399,13 @@ var DateTimePicker = function ($) {
                 } else {
                     this._notifyEvent({
                         type: DateTimePicker.Event.CHANGE,
-                        date: targetMoment,
+                        _date: targetMoment,
                         oldDate: oldDate
                     });
                 }
                 this._notifyEvent({
                     type: DateTimePicker.Event.ERROR,
-                    date: targetMoment,
+                    _date: targetMoment,
                     oldDate: oldDate
                 });
             }
@@ -512,7 +482,7 @@ var DateTimePicker = function ($) {
         };
 
         DateTimePicker.prototype._notifyEvent = function _notifyEvent(e) {
-            if (e.type === DateTimePicker.Event.CHANGE && (e.date && e.date.isSame(e.oldDate) || !e.date && !e.oldDate)) {
+            if (e.type === DateTimePicker.Event.CHANGE && (e._date && e._date.isSame(e.oldDate) || !e._date && !e.oldDate)) {
                 return;
             }
             this._element.trigger(e);
@@ -1511,7 +1481,6 @@ var DateTimePicker = function ($) {
 
     return DateTimePicker;
 }(jQuery);
-
 //noinspection JSUnusedGlobalSymbols
 /* global DateTimePicker */
 var TempusDominusBootstrap3 = function ($) {
@@ -2359,7 +2328,7 @@ var TempusDominusBootstrap3 = function ($) {
 
             this._notifyEvent({
                 type: DateTimePicker.Event.HIDE,
-                date: this._date.clone()
+                _date: this._date.clone()
             });
 
             if (this.input !== undefined) {
@@ -2626,5 +2595,3 @@ var TempusDominusBootstrap3 = function ($) {
 
     return TempusDominusBootstrap3;
 }(jQuery);
-
-}();

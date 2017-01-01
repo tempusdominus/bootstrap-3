@@ -832,7 +832,7 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
 
             this._notifyEvent({
                 type: DateTimePicker.Event.HIDE,
-                _date: this._date.clone()
+                date: this._date.clone()
             });
 
             if (this.input !== undefined) {
