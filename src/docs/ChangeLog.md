@@ -14,3 +14,4 @@
 ### Other changes
 
 * moved `showTodayButton`, `showClear` and `showClose` into `options.buttons`
+* manually merged #1946, #1939, #1921, #1913
