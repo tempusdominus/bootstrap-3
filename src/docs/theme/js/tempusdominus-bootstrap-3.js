@@ -127,7 +127,8 @@ var DateTimePicker = function ($) {
             incrementSecond: 'Increment Second',
             decrementSecond: 'Decrement Second',
             togglePeriod: 'Toggle Period',
-            selectTime: 'Select Time'
+            selectTime: 'Select Time',
+            selectDate: 'Select Date'
         },
         useStrict: false,
         sideBySide: false,
@@ -153,7 +154,7 @@ var DateTimePicker = function ($) {
         keyBinds: {
             up: function up() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
@@ -161,11 +162,12 @@ var DateTimePicker = function ($) {
                 } else {
                     this.date(d.clone().add(this.stepping(), 'm'));
                 }
+                return true;
             },
             down: function down() {
                 if (!this.widget) {
                     this.show();
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
@@ -173,10 +175,11 @@ var DateTimePicker = function ($) {
                 } else {
                     this.date(d.clone().subtract(this.stepping(), 'm'));
                 }
+                return true;
             },
             'control up': function controlUp() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
@@ -184,10 +187,11 @@ var DateTimePicker = function ($) {
                 } else {
                     this.date(d.clone().add(1, 'h'));
                 }
+                return true;
             },
             'control down': function controlDown() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
@@ -195,62 +199,78 @@ var DateTimePicker = function ($) {
                 } else {
                     this.date(d.clone().subtract(1, 'h'));
                 }
+                return true;
             },
             left: function left() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
                     this.date(d.clone().subtract(1, 'd'));
                 }
+                return true;
             },
             right: function right() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
                     this.date(d.clone().add(1, 'd'));
                 }
+                return true;
             },
             pageUp: function pageUp() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
                     this.date(d.clone().subtract(1, 'M'));
                 }
+                return true;
             },
             pageDown: function pageDown() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 var d = this._date || this.getMoment();
                 if (this.widget.find('.datepicker').is(':visible')) {
                     this.date(d.clone().add(1, 'M'));
                 }
+                return true;
             },
             enter: function enter() {
                 this.hide();
+                return true;
             },
             escape: function escape() {
+                if (!this.widget) {
+                    return false;
+                }
                 this.hide();
+                return true;
             },
             'control space': function controlSpace() {
                 if (!this.widget) {
-                    return;
+                    return false;
                 }
                 if (this.widget.find('.timepicker').is(':visible')) {
                     this.widget.find('.btn[data-action="togglePeriod"]').click();
                 }
+                return true;
             },
             t: function t() {
                 this.date(this.getMoment());
+                return true;
             },
             'delete': function _delete() {
+                if (!this.widget) {
+                    return false;
+                }
                 this.clear();
+                return true;
             }
         },
         debug: false,
@@ -307,10 +327,11 @@ var DateTimePicker = function ($) {
         'delete': 46,
         46: 'delete'
     },
-        ViewModes = ['days', 'months', 'years', 'decades'];
+        ViewModes = ['time', 'days', 'months', 'years', 'decades'];
 
     var MinViewModeNumber = 0,
-        keyState = {};
+        keyState = {},
+        keyPressHandled = {};
 
     var DateTimePicker = function () {
         /** @namespace eData.dateOptions */
@@ -653,8 +674,10 @@ var DateTimePicker = function ($) {
             }
 
             if (handler) {
-                e.stopPropagation();
-                e.preventDefault();
+                if (handler.call(this.widget)) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
             }
         };
 
@@ -663,8 +686,11 @@ var DateTimePicker = function ($) {
 
         DateTimePicker.prototype._keyup = function _keyup(e) {
             keyState[e.which] = 'r';
-            e.stopPropagation();
-            e.preventDefault();
+            if (keyPressHandled[e.which]) {
+                keyPressHandled[e.which] = false;
+                e.stopPropagation();
+                e.preventDefault();
+            }
         };
 
         DateTimePicker.prototype._indexGivenDates = function _indexGivenDates(givenDatesArray) {
@@ -1166,7 +1192,7 @@ var DateTimePicker = function ($) {
             }
 
             this._options.viewMode = _viewMode;
-            this.currentViewMode = Math.max(DateTimePicker.ViewModes.indexOf(_viewMode), DateTimePicker.MinViewModeNumber);
+            this.currentViewMode = Math.max(DateTimePicker.ViewModes.indexOf(_viewMode) - 1, DateTimePicker.MinViewModeNumber);
 
             this._showMode();
         };
@@ -1718,13 +1744,13 @@ var TempusDominusBootstrap3 = function ($) {
                 content.append(toolbar);
             }
             if (this._hasDate()) {
-                content.append($('<li>').addClass("" + (this._options.collapse && this._hasTime() ? 'collapse in' : '')).append(dateView));
+                content.append($('<li>').addClass(this._options.collapse && this._hasTime() ? 'collapse' : '').addClass(this._options.collapse && this._hasTime() && this._options.viewMode === 'time' ? '' : 'in').append(dateView));
             }
             if (this._options.toolbarPlacement === 'default') {
                 content.append(toolbar);
             }
             if (this._hasTime()) {
-                content.append($('<li>').addClass("" + (this._options.collapse && this._hasDate() ? 'collapse' : '')).append(timeView));
+                content.append($('<li>').addClass(this._options.collapse && this._hasDate() ? 'collapse' : '').addClass(this._options.collapse && this._hasDate() && this._options.viewMode === 'time' ? 'in' : '').append(dateView));
             }
             if (this._options.toolbarPlacement === 'bottom') {
                 content.append(toolbar);
@@ -2225,9 +2251,11 @@ var TempusDominusBootstrap3 = function ($) {
                 case 'togglePicker':
                     {
                         var $this = $(e.target),
+                            $link = $this.closest('a'),
                             $parent = $this.closest('ul'),
                             expanded = $parent.find('.in'),
-                            closed = $parent.find('.collapse:not(.in)');
+                            closed = $parent.find('.collapse:not(.in)'),
+                            $span = $this.is('span') ? $this : $this.find('span');
                         var collapseData = void 0;
 
                         if (expanded && expanded.length) {
@@ -2244,16 +2272,13 @@ var TempusDominusBootstrap3 = function ($) {
                                 expanded.removeClass('in');
                                 closed.addClass('in');
                             }
-                            if ($this.is('span')) {
-                                $this.toggleClass(this._options.icons.time + " " + this._options.icons.date);
-                            } else {
-                                $this.find('span').toggleClass(this._options.icons.time + " " + this._options.icons.date);
-                            }
+                            $span.toggleClass(this._options.icons.time + ' ' + this._options.icons.date);
 
-                            // NOTE: uncomment if toggled state will be restored in show()
-                            //if (component) {
-                            //    component.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
-                            //}
+                            if ($span.hasClass(this._options.icons.date)) {
+                                $link.attr('title', this._options.tooltips.selectDate);
+                            } else {
+                                $link.attr('title', this._options.tooltips.selectTime);
+                            }
                         }
                     }
                     break;

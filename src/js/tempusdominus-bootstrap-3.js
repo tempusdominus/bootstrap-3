@@ -209,13 +209,17 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
                 content.append(toolbar);
             }
             if (this._hasDate()) {
-                content.append($('<li>').addClass(`${this._options.collapse && this._hasTime() ? 'collapse in' : ''}`).append(dateView));
+                content.append($('<li>').addClass(this._options.collapse && this._hasTime() ? 'collapse' : '')
+                    .addClass((this._options.collapse && this._hasTime() && this._options.viewMode === 'time' ? '' : 'in'))
+                    .append(dateView));
             }
             if (this._options.toolbarPlacement === 'default') {
                 content.append(toolbar);
             }
             if (this._hasTime()) {
-                content.append($('<li>').addClass(`${this._options.collapse && this._hasDate() ? 'collapse' : ''}`).append(timeView));
+                content.append($('<li>').addClass(this._options.collapse && this._hasDate() ? 'collapse' : '')
+                    .addClass((this._options.collapse && this._hasDate() && this._options.viewMode === 'time' ? 'in' : ''))
+                    .append(dateView));
             }
             if (this._options.toolbarPlacement === 'bottom') {
                 content.append(toolbar);
@@ -712,9 +716,11 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
                 case 'togglePicker':
                     {
                         const $this = $(e.target),
+                            $link = $this.closest('a'),
                             $parent = $this.closest('ul'),
                             expanded = $parent.find('.in'),
-                            closed = $parent.find('.collapse:not(.in)');
+                            closed = $parent.find('.collapse:not(.in)'),
+                            $span = $this.is('span') ? $this : $this.find('span');
                         let collapseData;
 
                         if (expanded && expanded.length) {
@@ -731,16 +737,13 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
                                 expanded.removeClass('in');
                                 closed.addClass('in');
                             }
-                            if ($this.is('span')) {
-                                $this.toggleClass(`${this._options.icons.time} ${this._options.icons.date}`);
-                            } else {
-                                $this.find('span').toggleClass(`${this._options.icons.time} ${this._options.icons.date}`);
-                            }
+                            $span.toggleClass(this._options.icons.time + ' ' + this._options.icons.date);
 
-                            // NOTE: uncomment if toggled state will be restored in show()
-                            //if (component) {
-                            //    component.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
-                            //}
+                            if ($span.hasClass(this._options.icons.date)) {
+                                $link.attr('title', this._options.tooltips.selectDate);
+                            } else {
+                                $link.attr('title', this._options.tooltips.selectTime);
+                            }
                         }
                     }
                     break;
