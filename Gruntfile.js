@@ -151,13 +151,21 @@ module.exports = function (grunt) {
             }
         },
         stamp: {
-            options: {
-                banner: '<%= banner %>\n<%= jqueryCheck %>\n<%= jqueryVersionCheck %>\n<%= momentCheck %>\n<%= momentVersionCheck %>\n+function () {\n',
-                footer: '\n}();'
-            },
             bootstrap: {
+                options: {
+                    banner: '<%= banner %>\n<%= jqueryCheck %>\n<%= jqueryVersionCheck %>\n<%= momentCheck %>\n<%= momentVersionCheck %>\n+function () {\n',
+                    footer: '\n}();'
+                },
                 files: {
                     src: '<%= concat.bootstrap.dest %>'
+                }
+            },
+            css: {
+                options: {
+                    banner: '<%= banner %>'
+                },
+                files: {
+                    src: 'build/css/*.css'
                 }
             }
         },
@@ -177,18 +185,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-nuget');
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('default', 'build');
+    grunt.registerTask('default', 'build:js');
     grunt.registerTask('build:travis', [
-        // code style
-        'eslint', 'jscs',
-        // build
-        'babel:dist', 'uglify', 'less'//,
+        'build:js', 'build:style'//,
         // tests
         //'env:paris', 'connect', 'jasmine'
     ]);
 
     // Task to be run when building
-    grunt.registerTask('build', ['babel:dev', 'concat', 'eslint', 'babel:dist', 'stamp', 'uglify', 'copy']);
+    grunt.registerTask('build:js', ['babel:dev', 'concat', 'eslint', 'babel:dist', 'stamp:bootstrap', 'uglify', 'copy']);
+
+    grunt.registerTask('build:style', ['less', 'stamp:css', 'copy']);
 
     grunt.registerTask('test', ['build', 'env:paris', 'connect', 'jasmine']);
 
