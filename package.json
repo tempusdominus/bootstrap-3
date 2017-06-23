@@ -11,14 +11,14 @@
     "jquery": "^1.9.1 || ^2.0 || ^3.0",
     "moment": "^2.17",
     "moment-timezone": "^0.5.11",
-    "tempusdominus-core": "5.0.0-alpha"
+    "tempusdominus-core": "5.0.0-alpha6"
   },
   "peerDependenciesd": {
     "bootstrap": "3.3.7",
     "jquery": "^1.9.1 || ^2.0 || ^3.0",
     "moment": "^2.17",
     "moment-timezone": "^0.5.11",
-    "tempusdominus-core": "5.0.0-alpha"
+    "tempusdominus-core": "5.0.0-alpha6"
   },
   "scripts": {
     "change-version": "node grunt/change-version.js",
@@ -68,7 +68,7 @@
     "type": "git",
     "url": "https://github.com/tempusdominus/bootstrap-3.git"
   },
-  "version": "5.0.0-alpha",
+  "version": "5.0.0-alpha6",
   "files": [
     "build",
     "src/js/**/*.js",

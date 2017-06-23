@@ -166,9 +166,7 @@
         <li><a href="#calendarweeks">calendarWeeks</a></li>
         <li><a href="#viewmode">viewMode</a></li>
         <li><a href="#toolbarplacement">toolbarPlacement</a></li>
-        <li><a href="#showtodaybutton">showTodayButton</a></li>
-        <li><a href="#showclear">showClear</a></li>
-        <li><a href="#showclose">showClose</a></li>
+        <li><a href="#buttons">buttons</a></li>
         <li><a href="#widgetpositioning">widgetPositioning</a></li>
         <li><a href="#widgetparent">widgetParent</a></li>
         <li><a href="#keepopen">keepOpen</a></li>
@@ -476,36 +474,23 @@ Accepts: 'default', 'top', 'bottom'
 <p>Takes a <code>string</code> value. Valid values are <code>'default'</code>, <code>'top'</code> and <code>'bottom'</code>.</p>
 <p>Changes the placement of the toolbar where the today, clear, component switch icon are located.</p>
 <hr />
-<h3 id="showtodaybutton">showTodayButton</h3>
-<pre><code>Default: false
+<h3 id="buttons">buttons</h3>
+<pre><code>Default: {
+            showToday: false,
+            showClear: false,
+            showClose: false
+        }
+Accepts: object with all or some of the parameters above
 </code></pre>
-<p>Show the "Today" button in the icon toolbar.</p>
-<p>Clicking the "Today" button will set the calendar view and set the date to <code>now</code>.</p>
-<h4 id="showtodaybutton_1">showTodayButton</h4>
-<p>Returns a <code>boolean</code> variable with the currently set <code>options.showTodayButton</code> option.</p>
-<h4 id="showtodaybutton-boolean">showTodayButton, [boolean]</h4>
-<p>Takes a <code>boolean</code> variable to set if the Today button will appear on the widget</p>
-<hr />
-<h3 id="showclear">showClear</h3>
-<pre><code>Default: false
-</code></pre>
-<p>Show the "Clear" button in the icon toolbar.</p>
-<p>Clicking the "Clear" button will set the calendar to null.</p>
-<h4 id="showclear_1">showClear</h4>
-<p>Returns a <code>boolean</code> variable with the currently set <code>options.showClear</code> option.</p>
-<h4 id="showclear-boolean">showClear, [boolean]</h4>
-<p>Takes a <code>boolean</code> variable to set if the clear date button will appear on the widget</p>
-<hr />
-<h3 id="showclose">showClose</h3>
-<pre><code>Default: false
-</code></pre>
-<p>Show the "Close" button in the icon toolbar.</p>
-<p>Clicking the "Close" button will call <code>hide()</code></p>
-<h4 id="showclose_1">showClose</h4>
-<p>Returns a <code>boolean</code> variable with the currently set <code>options.showClose</code> option.</p>
-<h4 id="showclose-boolean">showClose, [boolean]</h4>
-<p>Takes a <code>boolean</code> value.</p>
-<p>If <code>true</code>, an icon will be displayed on the toolbar that will hide the picker</p>
+<p>Change the default toolbar buttons for the pickers functions.</p>
+<h4 id="buttons_1">buttons</h4>
+<p>Returns an <code>Ojbect</code> of <code>options.buttons</code> </p>
+<h4 id="buttons-buttons">buttons, [buttons]</h4>
+<p>Takes an <code>Ojbect</code> of <code>boolean</code>.</p>
+<h5 id="throws_6">Throws</h5>
+<ul>
+<li><code>TypeError</code> - if buttons parameter is not an <code>Ojbect</code></li>
+</ul>
 <hr />
 <h3 id="widgetpositioning">widgetPositioning</h3>
 <pre><code>Default: {
@@ -772,7 +757,7 @@ var parseInputDate = function(inputDate) {
 <p>Returns an <code>Ojbect</code> of <code>options.tooltips</code> </p>
 <h4 id="tooltips-tooltips">tooltips, [tooltips]</h4>
 <p>Takes an <code>Ojbect</code> of <code>strings</code>.</p>
-<h5 id="throws_6">Throws</h5>
+<h5 id="throws_7">Throws</h5>
 <ul>
 <li><code>TypeError</code> - if <code>tooltips</code> parameter is not an <code>Ojbect</code></li>
 </ul>
@@ -785,7 +770,7 @@ var parseInputDate = function(inputDate) {
 <p>Returns an <code>string</code> of <code>options.timeZone</code> </p>
 <h4 id="timezone-timezone">timeZone, [timeZone]</h4>
 <p>Takes an <code>string</code> of a valid timezone.</p>
-<h5 id="throws_7">Throws</h5>
+<h5 id="throws_8">Throws</h5>
 <ul>
 <li><code>TypeError</code> - if <code>tooltips</code> parameter is not an <code>string</code></li>
 </ul></div>

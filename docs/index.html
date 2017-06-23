@@ -146,7 +146,7 @@
         <div class="row">
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#tempus-dominus-bootstrap3-v5-docs">Tempus Dominus - Bootstrap3 v5 Docs</a></li>
+        <li class="main active"><a href="#bootstrap3-v5-docs">Bootstrap3 v5 Docs</a></li>
         <li><a href="#minimum-setup">Minimum Setup</a></li>
         <li><a href="#using-locales">Using Locales</a></li>
         <li><a href="#time-only">Time Only</a></li>
@@ -163,7 +163,7 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="tempus-dominus-bootstrap3-v5-docs">Tempus Dominus - Bootstrap3 v5 Docs</h1>
+<h1 id="bootstrap3-v5-docs">Bootstrap3 v5 Docs</h1>
 <div class="alert alert-info">
     <strong>Note</strong>
     All functions are accessed via the <code>$('#datetimepicker').datetimepicker(FUNCTION)</code>
@@ -184,7 +184,7 @@
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker1').datetimepicker();
+                $('#datetimepicker1').datetimepicker({debug:true});
             });
         </script>
     </div>
@@ -361,7 +361,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
+            <input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
         </div>
         <script type="text/javascript">
             $(function () {
@@ -376,7 +376,7 @@
 &lt;div class=&quot;container&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
         &lt;div class=&quot;col-sm-6&quot;&gt;
-            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;datetimepicker5&quot; /&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control datetimepicker-input&quot; id=&quot;datetimepicker5&quot; data-toggle=&quot;datetimepicker&quot; data-target=&quot;#datetimepicker5&quot;/&gt;
         &lt;/div&gt;
         &lt;script type=&quot;text/javascript&quot;&gt;
             $(function () {
@@ -514,11 +514,11 @@
         $('#datetimepicker8').datetimepicker({
             useCurrent: false
         });
-        $(&quot;#datetimepicker7&quot;).on(&quot;dp.change&quot;, function (e) {
-            $('#datetimepicker8').data(&quot;DateTimePicker&quot;).minDate(e.date);
+        $(&quot;#datetimepicker7&quot;).on(&quot;change.datetimepicker&quot;, function (e) {
+            $('#datetimepicker8').datetimepicker('minDate', e.date);
         });
-        $(&quot;#datetimepicker8&quot;).on(&quot;dp.change&quot;, function (e) {
-            $('#datetimepicker7').data(&quot;DateTimePicker&quot;).maxDate(e.date);
+        $(&quot;#datetimepicker8&quot;).on(&quot;change.datetimepicker&quot;, function (e) {
+            $('#datetimepicker7').datetimepicker('maxDate', e.date);
         });
     });
 &lt;/script&gt;
@@ -727,7 +727,10 @@
         $(function () {
             $('#datetimepicker13').datetimepicker({
                 inline: true,
-                sideBySide: true
+                sideBySide: true,
+                buttons:{
+                    showToday:true
+                }
             });
         });
     </script>
