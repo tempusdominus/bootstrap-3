@@ -10,8 +10,8 @@ module.exports = function (grunt) {
         '  throw new Error(\'Tempus Dominus Bootstrap3\\\'s requires jQuery. jQuery must be included before Tempus Dominus Bootstrap3\\\'s JavaScript.\');\n' +
         '}\n',
         jqueryVersionCheck: '+function ($) {\n' +
-        '  var version = $.fn.jquery.split(\' \')[0].split(\'.\')\n' +
-        '  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] >= 4)) {\n' +
+        '  var version = $.fn.jquery.split(\' \')[0].split(\'.\');\n' +
+        '  if ((version[0] < 2 && version[1] < 9) || (version[0] === 1 && version[1] === 9 && version[2] < 1) || (version[0] >= 4)) {\n' +
         '    throw new Error(\'Tempus Dominus Bootstrap3\\\'s requires at least jQuery v1.9.1 but less than v4.0.0\');\n' +
         '  }\n' +
         '}(jQuery);\n\n',

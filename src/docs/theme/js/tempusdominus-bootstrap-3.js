@@ -9,8 +9,8 @@ if (typeof jQuery === 'undefined') {
 }
 
 +function ($) {
-  var version = $.fn.jquery.split(' ')[0].split('.')
-  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] >= 4)) {
+  var version = $.fn.jquery.split(' ')[0].split('.');
+  if ((version[0] < 2 && version[1] < 9) || (version[0] === 1 && version[1] === 9 && version[2] < 1) || (version[0] >= 4)) {
     throw new Error('Tempus Dominus Bootstrap3\'s requires at least jQuery v1.9.1 but less than v4.0.0');
   }
 }(jQuery);
@@ -1857,7 +1857,8 @@ var TempusDominusBootstrap3 = function ($) {
         };
 
         TempusDominusBootstrap3.prototype._updateMonths = function _updateMonths() {
-            var monthsView = this.widget.find('.datepicker-months'),
+            var self = this,
+                monthsView = this.widget.find('.datepicker-months'),
                 monthsViewHeader = monthsView.find('th'),
                 months = monthsView.find('tbody').find('span');
 
@@ -1881,7 +1882,6 @@ var TempusDominusBootstrap3 = function ($) {
             if (this._date.isSame(this._viewDate, 'y') && !this.unset) {
                 months.eq(this._date.month()).addClass('active');
             }
-            var self = this;
             months.each(function (index) {
                 if (!self._isValid(self._viewDate.clone().month(index), 'M')) {
                     $(this).addClass('disabled');
@@ -1889,11 +1889,20 @@ var TempusDominusBootstrap3 = function ($) {
             });
         };
 
+        TempusDominusBootstrap3.prototype._getStartEndYear = function _getStartEndYear(factor, year) {
+            var step = factor / 10,
+                startYear = Math.floor(year / factor) * factor,
+                endYear = startYear + step * 9,
+                focusValue = Math.floor(year / step) * step;
+            return [startYear, endYear, focusValue];
+        };
+
         TempusDominusBootstrap3.prototype._updateYears = function _updateYears() {
             var yearsView = this.widget.find('.datepicker-years'),
                 yearsViewHeader = yearsView.find('th'),
-                startYear = this._viewDate.clone().subtract(5, 'y'),
-                endYear = this._viewDate.clone().add(6, 'y');
+                yearCaps = this._getStartEndYear(10, this._viewDate.year()),
+                startYear = this._viewDate.clone().year(yearCaps[0]),
+                endYear = this._viewDate.clone().year(yearCaps[1]);
             var html = '';
 
             yearsViewHeader.eq(0).find('span').attr('title', this._options.tooltips.prevDecade);
@@ -1911,11 +1920,12 @@ var TempusDominusBootstrap3 = function ($) {
             if (this._options.maxDate && this._options.maxDate.isBefore(endYear, 'y')) {
                 yearsViewHeader.eq(2).addClass('disabled');
             }
-
+            html += '<span data-action="selectYear" class="year old">' + (startYear.year() - 1) + '</span>';
             while (!startYear.isAfter(endYear, 'y')) {
                 html += '<span data-action="selectYear" class="year' + (startYear.isSame(this._date, 'y') && !this.unset ? ' active' : '') + (!this._isValid(startYear, 'y') ? ' disabled' : '') + '">' + startYear.year() + '</span>';
                 startYear.add(1, 'y');
             }
+            html += '<span data-action="selectYear" class="year old">' + startYear.year() + '</span>';
 
             yearsView.find('td').html(html);
         };
@@ -1923,9 +1933,9 @@ var TempusDominusBootstrap3 = function ($) {
         TempusDominusBootstrap3.prototype._updateDecades = function _updateDecades() {
             var decadesView = this.widget.find('.datepicker-decades'),
                 decadesViewHeader = decadesView.find('th'),
-                startDecade = window.moment({ y: this._viewDate.year() - this._viewDate.year() % 100 - 1 }),
-                endDecade = startDecade.clone().add(100, 'y'),
-                startedAt = startDecade.clone();
+                yearCaps = this._getStartEndYear(100, this._viewDate.year()),
+                startDecade = this._viewDate.clone().year(yearCaps[0]),
+                endDecade = this._viewDate.clone().year(yearCaps[1]);
             var minDateDecade = false,
                 maxDateDecade = false,
                 endDecadeYear = void 0,
@@ -1936,27 +1946,32 @@ var TempusDominusBootstrap3 = function ($) {
 
             decadesView.find('.disabled').removeClass('disabled');
 
-            if (startDecade.isSame(window.moment({ y: 1900 })) || this._options.minDate && this._options.minDate.isAfter(startDecade, 'y')) {
+            if (startDecade.year() === 0 || this._options.minDate && this._options.minDate.isAfter(startDecade, 'y')) {
                 decadesViewHeader.eq(0).addClass('disabled');
             }
 
             decadesViewHeader.eq(1).text(startDecade.year() + '-' + endDecade.year());
 
-            if (startDecade.isSame(window.moment({ y: 2000 })) || this._options.maxDate && this._options.maxDate.isBefore(endDecade, 'y')) {
+            if (this._options.maxDate && this._options.maxDate.isBefore(endDecade, 'y')) {
                 decadesViewHeader.eq(2).addClass('disabled');
+            }
+
+            if (startDecade.year() - 10 < 0) {
+                html += '<span>&nbsp;</span>';
+            } else {
+                html += '<span data-action="selectDecade" class="decade old" data-selection="' + (startDecade.year() + 6) + '">' + (startDecade.year() - 10) + '</span>';
             }
 
             while (!startDecade.isAfter(endDecade, 'y')) {
                 endDecadeYear = startDecade.year() + 11;
                 minDateDecade = this._options.minDate && this._options.minDate.isAfter(startDecade, 'y') && this._options.minDate.year() <= endDecadeYear;
                 maxDateDecade = this._options.maxDate && this._options.maxDate.isAfter(startDecade, 'y') && this._options.maxDate.year() <= endDecadeYear;
-                html += '<span data-action="selectDecade" class="decade' + (this._date.isAfter(startDecade) && this._date.year() <= endDecadeYear ? ' active' : '') + (!this._isValid(startDecade, 'y') && !minDateDecade && !maxDateDecade ? ' disabled' : '') + '" data-selection="' + (startDecade.year() + 6) + '">' + (startDecade.year() + 1) + ' - ' + (startDecade.year() + 11) + '</span>';
-                startDecade.add(11, 'y');
+                html += '<span data-action="selectDecade" class="decade' + (this._date.isAfter(startDecade) && this._date.year() <= endDecadeYear ? ' active' : '') + (!this._isValid(startDecade, 'y') && !minDateDecade && !maxDateDecade ? ' disabled' : '') + '" data-selection="' + (startDecade.year() + 6) + '">' + startDecade.year() + '</span>';
+                startDecade.add(10, 'y');
             }
-            html += '<span></span><span></span><span></span>'; //push the dangling block over, at least this way it's even
+            html += '<span data-action="selectDecade" class="decade old" data-selection="' + (startDecade.year() + 6) + '">' + startDecade.year() + '</span>';
 
             decadesView.find('td').html(html);
-            decadesViewHeader.eq(1).text(startedAt.year() + 1 + '-' + startDecade.year());
         };
 
         TempusDominusBootstrap3.prototype._fillDate = function _fillDate() {
@@ -2602,11 +2617,11 @@ var TempusDominusBootstrap3 = function ($) {
         }
         TempusDominusBootstrap3._jQueryInterface.call($target, '_change', event);
     }).on(DateTimePicker.Event.BLUR, '.' + DateTimePicker.ClassName.INPUT, function (event) {
-        var $target = getSelectorFromElement($(this));
+        var $target = getSelectorFromElement($(this)),
+            config = $target.data(DateTimePicker.DATA_KEY);
         if ($target.length === 0) {
             return;
         }
-        var config = $target.data(DateTimePicker.DATA_KEY);
         if (config._options.debug) {
             return;
         }
@@ -2624,11 +2639,11 @@ var TempusDominusBootstrap3 = function ($) {
         }
         TempusDominusBootstrap3._jQueryInterface.call($target, '_keyup', event);
     }).on(DateTimePicker.Event.FOCUS, '.' + DateTimePicker.ClassName.INPUT, function (event) {
-        var $target = getSelectorFromElement($(this));
+        var $target = getSelectorFromElement($(this)),
+            config = $target.data(DateTimePicker.DATA_KEY);
         if ($target.length === 0) {
             return;
         }
-        var config = $target.data(DateTimePicker.DATA_KEY);
         if (!config._options.allowInputToggle) {
             return;
         }
