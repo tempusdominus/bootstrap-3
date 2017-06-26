@@ -2384,7 +2384,7 @@ var TempusDominusBootstrap3 = function ($) {
             }
             this.widget.hide();
 
-            $(window).off('resize', this._place);
+            $(window).off('resize', this._place());
             this.widget.off('click', '[data-action]');
             this.widget.off('mousedown', false);
 
@@ -2456,7 +2456,7 @@ var TempusDominusBootstrap3 = function ($) {
             this._update();
             this._showMode();
 
-            $(window).on('resize', this._place);
+            $(window).on('resize', this._place());
             this.widget.on('click', '[data-action]', $.proxy(this._doAction, this)); // this handles clicks on the widget
             this.widget.on('mousedown', false);
 
