@@ -304,10 +304,10 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
             }
 
             this.widget.css({
-                top: `${vertical === 'top' ? 'auto' : position.top + this._element.outerHeight()}`,
-                bottom: `${vertical === 'top' ? parent.outerHeight() - (parent === this._element ? 0 : position.top) : 'auto'}`,
-                left: `${horizontal === 'left' ? parent === this._element ? 0 : position.left : 'auto'}`,
-                right: `${horizontal === 'left' ? 'auto' : parent.outerWidth() - this._element.outerWidth() - (parent === this._element ? 0 : position.left)}`
+                top: vertical === 'top' ? 'auto' : position.top + this._element.outerHeight() + 'px',
+                bottom: vertical === 'top' ? parent.outerHeight() - (parent === this._element ? 0 : position.top) + 'px' : 'auto',
+                left: horizontal === 'left' ? (parent === this._element ? 0 : position.left) + 'px' : 'auto',
+                right: horizontal === 'left' ? 'auto' : parent.outerWidth() - this._element.outerWidth() - (parent === this._element ? 0 : position.left) + 'px'
             });
         }
 
@@ -1088,7 +1088,7 @@ const TempusDominusBootstrap3 = ($ => { // eslint-disable-line no-unused-vars
         if ($target.length === 0) {
             return;
         }
-        if (config._options.debug) {
+        if (config._options.debug || window.debug) {
             return;
         }
         TempusDominusBootstrap3._jQueryInterface.call($target, 'hide', event);

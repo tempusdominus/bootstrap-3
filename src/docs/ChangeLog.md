@@ -10,6 +10,7 @@
 * Bootstrap 4-esk plugin creation style
 * All events are namespaced properly `{event}.datetimepicker`
 * Added a jquery no conflict option
+* Picker will also look for window.debug and will keep the picker from closing
 
 ### Other changes
 
