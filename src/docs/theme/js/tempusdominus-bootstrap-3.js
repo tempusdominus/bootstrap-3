@@ -1762,29 +1762,30 @@ var TempusDominusBootstrap3 = function ($) {
             return template.append(content);
         };
 
-        TempusDominusBootstrap3.prototype._place = function _place() {
-            var position = (this.component || this._element).position(),
-                offset = (this.component || this._element).offset();
-            var vertical = this._options.widgetPositioning.vertical,
-                horizontal = this._options.widgetPositioning.horizontal,
+        TempusDominusBootstrap3.prototype._place = function _place(e) {
+            var self = e && e.data && e.data.picker || this,
+                vertical = self._options.widgetPositioning.vertical,
+                horizontal = self._options.widgetPositioning.horizontal,
                 parent = void 0;
+            var position = (self.component || self._element).position(),
+                offset = (self.component || self._element).offset();
 
-            if (this._options.widgetParent) {
-                parent = this._options.widgetParent.append(this.widget);
-            } else if (this._element.is('input')) {
-                parent = this._element.after(this.widget).parent();
-            } else if (this._options.inline) {
-                parent = this._element.append(this.widget);
+            if (self._options.widgetParent) {
+                parent = self._options.widgetParent.append(self.widget);
+            } else if (self._element.is('input')) {
+                parent = self._element.after(self.widget).parent();
+            } else if (self._options.inline) {
+                parent = self._element.append(self.widget);
                 return;
             } else {
-                parent = this._element;
-                this._element.children().first().after(this.widget);
+                parent = self._element;
+                self._element.children().first().after(self.widget);
             }
 
             // Top and bottom logic
             if (vertical === 'auto') {
                 //noinspection JSValidateTypes
-                if (offset.top + this.widget.height() * 1.5 >= $(window).height() + $(window).scrollTop() && this.widget.height() + this._element.outerHeight() < offset.top) {
+                if (offset.top + self.widget.height() * 1.5 >= $(window).height() + $(window).scrollTop() && self.widget.height() + self._element.outerHeight() < offset.top) {
                     vertical = 'top';
                 } else {
                     vertical = 'bottom';
@@ -1793,7 +1794,7 @@ var TempusDominusBootstrap3 = function ($) {
 
             // Left and right logic
             if (horizontal === 'auto') {
-                if (parent.width() < offset.left + this.widget.outerWidth() / 2 && offset.left + this.widget.outerWidth() > $(window).width()) {
+                if (parent.width() < offset.left + self.widget.outerWidth() / 2 && offset.left + self.widget.outerWidth() > $(window).width()) {
                     horizontal = 'right';
                 } else {
                     horizontal = 'left';
@@ -1801,15 +1802,15 @@ var TempusDominusBootstrap3 = function ($) {
             }
 
             if (vertical === 'top') {
-                this.widget.addClass('top').removeClass('bottom');
+                self.widget.addClass('top').removeClass('bottom');
             } else {
-                this.widget.addClass('bottom').removeClass('top');
+                self.widget.addClass('bottom').removeClass('top');
             }
 
             if (horizontal === 'right') {
-                this.widget.addClass('pull-right');
+                self.widget.addClass('pull-right');
             } else {
-                this.widget.removeClass('pull-right');
+                self.widget.removeClass('pull-right');
             }
 
             // find the first parent element that has a static css positioning
@@ -1823,11 +1824,11 @@ var TempusDominusBootstrap3 = function ($) {
                 throw new Error('datetimepicker component should be placed within a static positioned container');
             }
 
-            this.widget.css({
-                top: vertical === 'top' ? 'auto' : position.top + this._element.outerHeight() + 'px',
-                bottom: vertical === 'top' ? parent.outerHeight() - (parent === this._element ? 0 : position.top) + 'px' : 'auto',
-                left: horizontal === 'left' ? (parent === this._element ? 0 : position.left) + 'px' : 'auto',
-                right: horizontal === 'left' ? 'auto' : parent.outerWidth() - this._element.outerWidth() - (parent === this._element ? 0 : position.left) + 'px'
+            self.widget.css({
+                top: vertical === 'top' ? 'auto' : position.top + self._element.outerHeight() + 'px',
+                bottom: vertical === 'top' ? parent.outerHeight() - (parent === self._element ? 0 : position.top) + 'px' : 'auto',
+                left: horizontal === 'left' ? (parent === self._element ? 0 : position.left) + 'px' : 'auto',
+                right: horizontal === 'left' ? 'auto' : parent.outerWidth() - self._element.outerWidth() - (parent === self._element ? 0 : position.left) + 'px'
             });
         };
 
@@ -2384,7 +2385,7 @@ var TempusDominusBootstrap3 = function ($) {
             }
             this.widget.hide();
 
-            $(window).off('resize', this._place());
+            $(window).off('resize', this._place);
             this.widget.off('click', '[data-action]');
             this.widget.off('mousedown', false);
 
@@ -2456,7 +2457,7 @@ var TempusDominusBootstrap3 = function ($) {
             this._update();
             this._showMode();
 
-            $(window).on('resize', this._place());
+            $(window).on('resize', { picker: this }, this._place);
             this.widget.on('click', '[data-action]', $.proxy(this._doAction, this)); // this handles clicks on the widget
             this.widget.on('mousedown', false);
 
