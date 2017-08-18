@@ -1,6 +1,6 @@
 {
   "name": "tempusdominus-bootstrap-3",
-  "version": "5.0.0-alpha8",
+  "version": "5.0.0-alpha9",
   "main": "build/js/tempusdominus-bootstrap-3.min.js",
   "scripts": [ "build/js/tempusdominus-bootstrap-3.min.js" ],
   "styles": [ "build/css/tempusdominus-bootstrap-3.min.css" ],
