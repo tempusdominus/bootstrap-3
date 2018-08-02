@@ -68,11 +68,3 @@ $(function () {
             }
         });
 });
-
-//window['_bsap_serving_callback'] = function() {
-//    $('.bs-sidebar').affix({
-//        offset: {
-//            top: $('#carbonads').height()
-//        }
-//    }); 
-//}
