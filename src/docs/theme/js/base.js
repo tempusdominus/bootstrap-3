@@ -1,23 +1,20 @@
-function getSearchTerm()
-{
+function getSearchTerm() {
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++)
-    {
+    for (var i = 0; i < sURLVariables.length; i++) {
         var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == 'q')
-        {
+        if (sParameterName[0] == 'q') {
             return sParameterName[1];
         }
     }
 }
 
-$(function() {
+$(function () {
 
     var search_term = getSearchTerm(),
         $search_modal = $('#mkdocs_search_modal');
 
-    if(search_term){
+    if (search_term) {
         $search_modal.modal();
     }
 
@@ -33,9 +30,9 @@ $(function() {
     $('table').addClass('table table-striped table-hover');
 
     // Improve the scrollspy behaviour when users click on a TOC item.
-    $(".bs-sidenav a").on("click", function() {
+    $(".bs-sidenav a").on("click", function () {
         var clicked = this;
-        setTimeout(function() {
+        setTimeout(function () {
             var active = $('.nav li.active a');
             active = active[active.length - 1];
             if (clicked !== active) {
@@ -59,4 +56,23 @@ $(function() {
     $("li.disabled a").click(function () {
         event.preventDefault();
     });
+
+    $(document).bind('DOMNodeInserted',
+        function (e) {
+            if (e.target.id === 'carbonads') {
+                $('.bs-sidebar').affix({
+                    offset: {
+                        top: $('#carbonads').height() + 10
+                    }
+                });
+            }
+        });
 });
+
+//window['_bsap_serving_callback'] = function() {
+//    $('.bs-sidebar').affix({
+//        offset: {
+//            top: $('#carbonads').height()
+//        }
+//    }); 
+//}
