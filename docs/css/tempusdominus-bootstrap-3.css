@@ -1,6 +1,6 @@
 /*@preserve
  * Tempus Dominus Bootstrap3 v5.0.0-alpha10 (https://tempusdominus.github.io/bootstrap-3/)
- * Copyright 2016-2018 Jonathan Peterson
+ * Copyright 2016-2020 Jonathan Peterson
  * Licensed under MIT (https://github.com/tempusdominus/bootstrap-3/blob/master/LICENSE)
  */
 
@@ -274,7 +274,7 @@
   width: 54px;
 }
 .bootstrap-datetimepicker-widget table td.cw {
-  font-size: .8em;
+  font-size: 0.8em;
   height: 20px;
   line-height: 20px;
   color: #777777;

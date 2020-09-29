@@ -1,6 +1,6 @@
 /*@preserve
- * Tempus Dominus Bootstrap3 v5.0.0-alpha9 (https://tempusdominus.github.io/bootstrap-3/)
- * Copyright 2016-2018 Jonathan Peterson
+ * Tempus Dominus Bootstrap3 v5.0.0-alpha10 (https://tempusdominus.github.io/bootstrap-3/)
+ * Copyright 2016-2020 Jonathan Peterson
  * Licensed under MIT (https://github.com/tempusdominus/bootstrap-3/blob/master/LICENSE)
  */
 
@@ -11,7 +11,7 @@ if (typeof jQuery === 'undefined') {
 +function ($) {
   var version = $.fn.jquery.split(' ')[0].split('.');
   if ((version[0] < 2 && version[1] < 9) || (version[0] === 1 && version[1] === 9 && version[2] < 1) || (version[0] >= 4)) {
-    throw new Error('Tempus Dominus Bootstrap3\'s requires at least jQuery v1.9.1 but less than v4.0.0');
+    throw new Error('Tempus Dominus Bootstrap3\'s requires at least jQuery v3.0.0 but less than v4.0.0');
   }
 }(jQuery);
 

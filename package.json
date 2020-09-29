@@ -7,7 +7,7 @@
     "url": "https://github.com/tempusdominus/bootstrap-3/issues"
   },
   "dependencies": {
-    "bootstrap": "3.3.7",
+    "bootstrap": "3.4.1",
     "jquery": "^3.0",
     "moment": "^2.17",
     "moment-timezone": "^0.5.11",
@@ -43,14 +43,13 @@
     "grunt-babel": "6.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^1.0.1",
-    "grunt-contrib-jasmine": "^1.0.3",
+    "grunt-contrib-jasmine": "^2.2.0",
     "grunt-contrib-less": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-env": "^0.4.4",
+    "grunt-env": "^1.0.1",
     "grunt-eslint": "^19.0.0",
-    "grunt-jscs": "latest",
-    "grunt-nuget": "^0.1.5",
+    "grunt-nuget": "^0.3.1",
     "grunt-stamp": "^0.3.0",
     "grunt-string-replace": "latest",
     "load-grunt-tasks": "latest",
@@ -68,7 +67,7 @@
     "type": "git",
     "url": "https://github.com/tempusdominus/bootstrap-3.git"
   },
-  "version": "5.0.0-alpha10",
+  "version": "5.0.0-alpha11",
   "files": [
     "build",
     "src/js/**/*.js",
