@@ -46,6 +46,7 @@
       </a>
    </div>
 </div>
+</div>
 <hr/>
 <div class="alert alert-info">
    <strong>Note</strong>
